@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Cell
 {
     private bool isAlive = false;
-    private bool newState = false;
+    private bool tmpState = false;
     public int2 coords;
     private GameObject quad;
 
@@ -20,13 +21,13 @@ public class Cell
 
     internal void SetAlive(bool alive)
     {
-        newState = alive;
+        tmpState = alive;
         quad.GetComponent<MeshRenderer>().enabled = alive;
     }
 
     public void Update()
     {
-        isAlive = newState;
+        isAlive = tmpState;
     }
 
     public void Next(List<int> bRule, List<int> sRule)

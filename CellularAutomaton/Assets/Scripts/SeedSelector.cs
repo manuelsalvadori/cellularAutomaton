@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using Unity.Mathematics;
 public class SeedSelector : MonoBehaviour
 {
     private bool active = false;
@@ -9,7 +9,7 @@ public class SeedSelector : MonoBehaviour
         var scale = 10.0f / GridGenerator.Instance.size.y;
         var coords = transform.localPosition / scale;
         active = !active;
-        GridGenerator.Instance.grid[new Unity.Mathematics.int2((int)coords.x, (int)coords.y)].SetAlive(active);
-        GridGenerator.Instance.grid[new Unity.Mathematics.int2((int)coords.x, (int)coords.y)].Update();
+        GridGenerator.Instance.grid[new int2((int)coords.x, (int)coords.y)].SetAlive(active);
+        GridGenerator.Instance.grid[new int2((int)coords.x, (int)coords.y)].Update();
     }
 }

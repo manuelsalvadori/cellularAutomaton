@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
+using Newtonsoft.Json;
 
 public class GridGenerator : MonoBehaviour
 {
@@ -38,6 +39,15 @@ public class GridGenerator : MonoBehaviour
                 grid.Add(coords, new Cell(coords, cellQuad));
             }
         }
+    }
+
+    public void ReInitGrid(int2 newSize)
+    {
+        size = newSize;
+        grid.Clear();
+        var scale = 10.0f / size.y;
+        transform.position = new Vector3((-size.x / 2 + 0.5f) * scale, (-size.y / 2 + 0.5f) * scale);
+        InitGrid();
     }
 
     private readonly int2[] neighboors =
